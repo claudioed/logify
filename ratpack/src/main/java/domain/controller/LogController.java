@@ -3,6 +3,7 @@ package domain.controller;
 import javax.inject.Inject;
 
 import domain.entity.LogData;
+import domain.entity.LogVO;
 import domain.repository.LogRepository;
 import ratpack.exec.Promise;
 import ratpack.handling.Context;
@@ -25,8 +26,8 @@ public class LogController implements Handler {
 
     @Override
     public void handle(Context ctx) throws Exception {
-        Promise<LogData> wrapper = ctx.parse(Jackson.fromJson(LogData.class));
-        wrapper.then(data -> logRepository.save(data));
+        Promise<LogVO> wrapper = ctx.parse(Jackson.fromJson(LogVO.class));
+        wrapper.then(data -> logRepository.save(new LogData(data.getLevel(),data.getMessage())));
     }
 
 }
