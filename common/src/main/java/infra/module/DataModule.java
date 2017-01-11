@@ -3,10 +3,10 @@ package infra.module;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
 
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.inject.Provides;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -23,7 +23,6 @@ import domain.repository.LogRepository;
  * @email claudioed.oliveira@gmail.com Project logify
  */
 public class DataModule extends AbstractModule {
-
 
     @Override
     protected void configure() {

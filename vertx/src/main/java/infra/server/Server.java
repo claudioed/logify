@@ -16,9 +16,6 @@ public class Server {
     public static void main(String... args) throws Exception {
         final Vertx vertx = Vertx.vertx();
         final Injector injector = Guice.createInjector(new LogModule(vertx));
-
-
-
     }
 
 }

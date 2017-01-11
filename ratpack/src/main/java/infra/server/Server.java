@@ -2,6 +2,7 @@ package infra.server;
 
 import domain.controller.LogController;
 import infra.module.DataModule;
+import infra.module.RatpackModule;
 import ratpack.guice.Guice;
 import ratpack.server.RatpackServer;
 
@@ -15,7 +16,7 @@ public class Server {
     public static void main(String... args) throws Exception {
         RatpackServer.start(s -> s
                 .serverConfig(c -> c.port(9001))
-                .registry(Guice.registry(b -> b.module(DataModule.class)))
+                .registry(Guice.registry(b -> b.module(RatpackModule.class)))
                 .handlers(chain -> chain.post(LogController.class))
         );
     }
