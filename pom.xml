@@ -12,6 +12,7 @@
         <module>ratpack</module>
         <module>common</module>
         <module>spark</module>
+        <module>dropwizard</module>
     </modules>
     <packaging>pom</packaging>
 
