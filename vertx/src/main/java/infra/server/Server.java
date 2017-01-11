@@ -3,6 +3,7 @@ package infra.server;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import domain.resource.LogResource;
 import infra.module.LogModule;
 import io.vertx.core.Vertx;
 
@@ -16,6 +17,7 @@ public class Server {
     public static void main(String... args) throws Exception {
         final Vertx vertx = Vertx.vertx();
         final Injector injector = Guice.createInjector(new LogModule(vertx));
+        vertx.deployVerticle(injector.getInstance(LogResource.class));
     }
 
 }
