@@ -3,10 +3,13 @@ package domain.resource;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 
+import domain.entity.LogData;
 import domain.repository.LogRepository;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpHeaders;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
 
 public class LogResource extends AbstractVerticle {
 
@@ -23,9 +26,13 @@ public class LogResource extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         final Router router = Router.router(vertx);
-        router.post("/log").handler(ctx -> {
+        router.post("/log").handler((RoutingContext ctx) -> {
             ctx.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-            ctx.response().setStatusCode(200).end("");
+            final JsonObject bodyAsJson = ctx.getBodyAsJson();
+            final String level = bodyAsJson.getString("level");
+            final String message = bodyAsJson.getString("message");
+            this.logRepository.save(new LogData(level,message));
+            ctx.response().setStatusCode(201).end("");
         });
         vertx.createHttpServer().requestHandler(router::accept).listen(8005);
     }
