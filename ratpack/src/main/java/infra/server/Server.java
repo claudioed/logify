@@ -17,7 +17,7 @@ public class Server {
         RatpackServer.start(s -> s
                 .serverConfig(c -> c.port(9001))
                 .registry(Guice.registry(b -> b.module(RatpackModule.class)))
-                .handlers(chain -> chain.post(LogController.class))
+                .handlers(chain -> chain.post("log",LogController.class))
         );
     }
 
