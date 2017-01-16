@@ -16,6 +16,7 @@
         <module>dropwizard</module>
         <module>jooby</module>
     </modules>
+
     <packaging>pom</packaging>
 
     <dependencies>
@@ -27,7 +28,6 @@
         </dependency>
 
     </dependencies>
-
 
     <build>
         <plugins>
