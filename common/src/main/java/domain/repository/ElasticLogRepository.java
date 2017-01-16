@@ -20,6 +20,10 @@ import lombok.NonNull;
 @Singleton
 public class ElasticLogRepository implements LogRepository {
 
+    private static final String INDEX_TYPE = "log-data";
+
+    private static final String INDEX = "logs";
+
     private final Client client;
 
     private final Gson gson;
@@ -32,7 +36,7 @@ public class ElasticLogRepository implements LogRepository {
 
     @Override
     public void save(@NonNull final LogData data) {
-        final IndexRequest indexRequest = new IndexRequest("log");
+        final IndexRequest indexRequest = new IndexRequest(INDEX,INDEX_TYPE,data.getUuid());
         indexRequest.source(this.gson.toJson(data));
         final IndexResponse response = this.client.index(indexRequest).actionGet();
     }

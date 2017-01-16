@@ -1,6 +1,7 @@
 package domain.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import lombok.Getter;
 
@@ -10,6 +11,9 @@ import lombok.Getter;
  * @email claudioed.oliveira@gmail.com Project logify
  */
 public class LogData {
+
+    @Getter
+    private final String uuid = UUID.randomUUID().toString();
 
     @Getter
     private final String level;

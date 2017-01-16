@@ -32,7 +32,7 @@ public class DataModule extends AbstractModule {
     @Provides
     public Client createClient() throws UnknownHostException {
         TransportClient client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9200));
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
         return client;
     }
 
