@@ -10,6 +10,7 @@ import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.BodyHandler;
 
 public class LogResource extends AbstractVerticle {
 
@@ -26,6 +27,7 @@ public class LogResource extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         final Router router = Router.router(vertx);
+        router.route().handler(BodyHandler.create());
         router.post("/log").handler((RoutingContext ctx) -> {
             ctx.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json");
             final JsonObject bodyAsJson = ctx.getBodyAsJson();

@@ -27,7 +27,12 @@ public class LogController implements Handler {
     @Override
     public void handle(Context ctx) throws Exception {
         Promise<LogVO> wrapper = ctx.parse(Jackson.fromJson(LogVO.class));
-        wrapper.then(data -> logRepository.save(new LogData(data.getLevel(),data.getMessage())));
+        wrapper.then(data -> {
+            final LogData logData = new LogData(data.getLevel(), data.getMessage());
+            logRepository.save(logData);
+            ctx.getResponse().send("");
+        });
+
     }
 
 }
