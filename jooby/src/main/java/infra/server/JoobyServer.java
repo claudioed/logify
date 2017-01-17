@@ -18,7 +18,6 @@ public class JoobyServer extends Jooby {
     }
 
     public static void main(String[] args) {
-        // 3. run my app
         run(JoobyServer::new, args);
     }
 
